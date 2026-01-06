@@ -28,6 +28,22 @@ require('pckr').add{
     }
   };
 
+  -- harpoon 
+  {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      requires = { "nvim-lua/plenary.nvim" }
+  };
+
+  -- yazi/file management
+  {
+    "mikavilpas/yazi.nvim",
+    version = '*',
+    requires = {
+      "nvim-lua/plenary.nvim"
+    }
+  };
+
   -- dashboard
   {
     'nvimdev/dashboard-nvim',
@@ -40,16 +56,13 @@ require('pckr').add{
     requires = { 'nvim-tree/nvim-web-devicons' }
   };
 
-  -- yazi/file management
+  -- terminal
   {
-    "mikavilpas/yazi.nvim",
-    version = '*',
-    requires = {
-      "nvim-lua/plenary.nvim"
-    }
+    "akinsho/toggleterm.nvim", 
+    tag = 'v2.13.1'
   };
 
-  -- lsp pkgs
+   -- lsp pkgs
   'mason-org/mason.nvim';
   'mason-org/mason-lspconfig.nvim';
   "neovim/nvim-lspconfig";
@@ -58,9 +71,11 @@ require('pckr').add{
   'hrsh7th/cmp-buffer';
   'hrsh7th/cmp-path';
 
-  -- other
+  -- color scheme
   {
-    "akinsho/toggleterm.nvim", 
-    tag = 'v2.13.1'
+    "folke/tokyonight.nvim",
+    -- lazy = false,
+    priority = 1000,
+    opts = {}
   };
 }
