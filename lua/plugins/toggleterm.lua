@@ -9,18 +9,37 @@ require("toggleterm").setup{
 }
 
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
-vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n><C-w>p]])
-vim.keymap.set('n', '<Esc>', 
-    function()
-        if vim.bo.buftype == 'terminal' then
-            vim.cmd('wincmd p')
+vim.keymap.set('t', '<Esc><Esc>', function()
+    -- exit terminal insert mode
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true), 'n', true)
+
+    -- find a non-terminal window
+    for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+        local buf = vim.api.nvim_win_get_buf(w)
+        if vim.api.nvim_buf_get_option(buf, 'buftype') ~= 'terminal' then
+            vim.api.nvim_set_current_win(w)
+            return
         end
     end
-)
+end, { noremap = true, silent = true })
+vim.keymap.set('n', '<Esc>', function()
+    if vim.bo.buftype == 'terminal' then
+        for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+            local buf = vim.api.nvim_win_get_buf(w)
+            if vim.api.nvim_buf_get_option(buf, 'buftype') ~= 'terminal' then
+                vim.api.nvim_set_current_win(w)
+                return
+            end
+        end
+    end
+end, { noremap = true })
 
-vim.keymap.set('n', '<leader>st', '<cmd>TermSelect<CR>', { desc = 'Toggle terminal' })
+vim.keymap.set('n', '<leader>ts', function() 
+    vim.cmd('TermSelect')
+    -- figure out how to programatically select term # and enter insert mode
+end, { desc = 'Select terminal' })
 vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm size=20 dir=. direction=horizontal<CR>', { desc = 'Toggle terminal' })
-vim.keymap.set('n', '<leader>xt', 
+vim.keymap.set('n', '<leader>tn', 
     function()
         local c = vim.fn.getcharstr()
         vim.cmd(c .. 'ToggleTerm size=20 dir=. name=term' .. c .. ' direction=horizontal')

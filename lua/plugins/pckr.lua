@@ -59,9 +59,7 @@ require('pckr').add{
   -- terminal
   {
     "akinsho/toggleterm.nvim", 
-    tag = 'v2.13.1'
-  };
-
+    tag = 'v2.13.1' };
    -- lsp pkgs
   'mason-org/mason.nvim';
   'mason-org/mason-lspconfig.nvim';
@@ -78,4 +76,18 @@ require('pckr').add{
     priority = 1000,
     opts = {}
   };
+
+  -- comments
+  'numToStr/Comment.nvim';
+
+  -- ai/autocomplete
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({})
+    end
+  };
+
+  -- formatting
+  'stevearc/conform.nvim';
 }
