@@ -1,5 +1,6 @@
 require("plugins.pckr")
 require("plugins.lsp")
+require("plugins.git")
 require("plugins.yazi")
 require("plugins.conform")
 require("plugins.harpoon")
