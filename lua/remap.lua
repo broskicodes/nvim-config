@@ -8,7 +8,7 @@ vim.keymap.set({ "n", "v" }, "<C-j>", "15gj", { noremap = true, silent = true })
 -- vim.keymap.set({ "n", "v" }, "<right>", "20gl", { noremap = true, silent = true })
 
 -- other
-vim.keymap.set("n", "<leader>gd", function()
+vim.keymap.set({ "n", "v" }, "<leader>gd", function()
 	vim.cmd("tab split")
 	vim.lsp.buf.definition()
 end, { desc = "Go to definition in new tab" })

@@ -1,2 +1,2 @@
-vim.keymap.set('n', '<leader>zz', '<cmd>Yazi<CR>', { desc = 'Open Yazi in current file' })
-vim.keymap.set('n', '<leader>zc', '<cmd>Yazi cwd<CR>', { desc = 'Open Yazi in current working dir' })
+vim.keymap.set({ "n", "v" }, '<leader>zz', '<cmd>Yazi<CR>', { desc = 'Open Yazi in current file' })
+vim.keymap.set({ "n", "v" }, '<leader>zc', '<cmd>Yazi cwd<CR>', { desc = 'Open Yazi in current working dir' })
